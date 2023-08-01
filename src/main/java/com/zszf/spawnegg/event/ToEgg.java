@@ -27,9 +27,9 @@ public class ToEgg implements Listener {
                 }
                 if (egg != null) {
                     Player player = e.getPlayer();
-                    Long now = System.currentTimeMillis();
-                    try {
-                        Long last = BukkitPlugin.CDMAP.get(player);
+                    long now = System.currentTimeMillis();
+                    Long last = BukkitPlugin.CDMAP.get(player);
+                    if(last!=null){
                         if (last + 1000 * 1000 > now) {
                             e.getPlayer().sendMessage("CD!");
                         } else {
@@ -38,34 +38,14 @@ public class ToEgg implements Listener {
                             e.getPlayer().sendMessage("成功将生物蛋割了下来");
                             BukkitPlugin.CDMAP.put(player, now);
                         }
-                    } catch (Exception ex) {
+                    }else{
                         e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(egg));
                         e.getRightClicked().remove();
                         e.getPlayer().sendMessage("成功将生物蛋割了下来");
                         BukkitPlugin.CDMAP.put(player, now);
                     }
-
                 } else {
                     e.getPlayer().sendMessage("未成功获取生物蛋");
-                }
-            } else {
-                Player player = e.getPlayer();
-                Long now = System.currentTimeMillis();
-                try {
-                    Long last = BukkitPlugin.CDMAP.get(player);
-                    if (last + 1000 * 1000 > now) {
-                        e.getPlayer().sendMessage("CD!");
-                    } else {
-                        e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(Material.PIG_SPAWN_EGG));
-                        e.getRightClicked().remove();
-                        e.getPlayer().sendMessage("成功将生物蛋割了下来");
-                        BukkitPlugin.CDMAP.put(player, now);
-                    }
-                } catch (Exception ex) {
-                    e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(Material.PIG_SPAWN_EGG));
-                    e.getRightClicked().remove();
-                    e.getPlayer().sendMessage("成功将生物蛋割了下来");
-                    BukkitPlugin.CDMAP.put(player, now);
                 }
             }
         }
