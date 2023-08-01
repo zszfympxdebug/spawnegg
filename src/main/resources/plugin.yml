@@ -1,4 +1,4 @@
 name: spawnegg
 version: '${version}'
-main: com.zszf.spawnegg.Spawnegg
+main: com.zszf.spawnegg.BukkitPlugin
 api-version: '1.20'

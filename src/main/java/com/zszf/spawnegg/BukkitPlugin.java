@@ -2,11 +2,15 @@ package com.zszf.spawnegg;
 
 import com.zszf.spawnegg.event.Events;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Spawnegg extends JavaPlugin {
+import java.util.Map;
+
+public class BukkitPlugin extends JavaPlugin {
 
     public static JavaPlugin instance;
+    public static Map<Player, Long> CDMAP;
 
     @Override
     public void onEnable() {
