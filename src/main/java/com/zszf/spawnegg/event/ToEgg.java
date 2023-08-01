@@ -2,7 +2,6 @@ package com.zszf.spawnegg.event;
 
 import com.zszf.spawnegg.BukkitPlugin;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +17,7 @@ public class ToEgg implements Listener {
             e.setCancelled(true);
             EntityType et = e.getRightClicked().getType();
             Material egg;
-            if(e.getRightClicked().getType()!= EntityType.PLAYER){
+            if (e.getRightClicked().getType() != EntityType.PLAYER) {
                 try {
                     String egg_name = (et.name() + "_SPAWN_EGG").toUpperCase();
                     egg = Material.getMaterial(egg_name);
@@ -28,18 +27,18 @@ public class ToEgg implements Listener {
                 }
                 if (egg != null) {
                     Player player = e.getPlayer();
-                    Long now =  System.currentTimeMillis();
+                    Long now = System.currentTimeMillis();
                     try {
                         Long last = BukkitPlugin.CDMAP.get(player);
-                        if(last+1000*1000 > now){
+                        if (last + 1000 * 1000 > now) {
                             e.getPlayer().sendMessage("CD!");
-                        }else{
+                        } else {
                             e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(egg));
                             e.getRightClicked().remove();
                             e.getPlayer().sendMessage("成功将生物蛋割了下来");
                             BukkitPlugin.CDMAP.put(player, now);
                         }
-                    }catch (Exception ex){
+                    } catch (Exception ex) {
                         e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(egg));
                         e.getRightClicked().remove();
                         e.getPlayer().sendMessage("成功将生物蛋割了下来");
@@ -49,20 +48,20 @@ public class ToEgg implements Listener {
                 } else {
                     e.getPlayer().sendMessage("未成功获取生物蛋");
                 }
-            }else{
+            } else {
                 Player player = e.getPlayer();
-                Long now =  System.currentTimeMillis();
+                Long now = System.currentTimeMillis();
                 try {
                     Long last = BukkitPlugin.CDMAP.get(player);
-                    if(last+1000*1000 > now){
+                    if (last + 1000 * 1000 > now) {
                         e.getPlayer().sendMessage("CD!");
-                    }else{
+                    } else {
                         e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(Material.PIG_SPAWN_EGG));
                         e.getRightClicked().remove();
                         e.getPlayer().sendMessage("成功将生物蛋割了下来");
                         BukkitPlugin.CDMAP.put(player, now);
                     }
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(Material.PIG_SPAWN_EGG));
                     e.getRightClicked().remove();
                     e.getPlayer().sendMessage("成功将生物蛋割了下来");
