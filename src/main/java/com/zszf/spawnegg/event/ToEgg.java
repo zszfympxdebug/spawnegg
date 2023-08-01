@@ -25,6 +25,7 @@ public class ToEgg implements Listener {
             if (egg != null) {
                 e.getRightClicked().getWorld().dropItem(e.getRightClicked().getLocation(), new ItemStack(egg));
                 e.getRightClicked().remove();
+                e.getPlayer().sendMessage("成功将生物蛋割了下来");
             } else {
                 e.getPlayer().sendMessage("未成功获取生物蛋");
             }
