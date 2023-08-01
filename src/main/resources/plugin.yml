@@ -1,0 +1,4 @@
+name: spawnegg
+version: '${version}'
+main: com.zszf.spawnegg.Spawnegg
+api-version: '1.20'
